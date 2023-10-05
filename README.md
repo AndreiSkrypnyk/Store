@@ -16,9 +16,6 @@ This project is being developed using various .Net 7 technologies to create a **
 4. **Add to Cart**
    - Users can add books to their cart for future purchase.
 
-5. **Checkout order**
-   - Users can place an order and choose a delivery and payment method.
-
 6. **Administrator Panel**
    - Administrators have access to the admin panel where they can add, edit and delete books.
    - They can also manage orders and users.
