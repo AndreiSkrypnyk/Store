@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace BookStore.Core.Entities
 {
-    public class UserRole
+    public enum Role : int
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string RoleName { get; set; }
+        Customer = 0,
+        Admin = 1
     }
 }

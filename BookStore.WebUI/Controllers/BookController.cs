@@ -4,11 +4,11 @@ using System.Diagnostics;
 
 namespace BookStore.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class BookController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<BookController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        public BookController(ILogger<BookController> logger)
         {
             _logger = logger;
         }
