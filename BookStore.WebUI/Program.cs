@@ -1,13 +1,20 @@
+using BookStore.Application.Interfaces;
+using BookStore.Application.Managers;
 using BookStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using BookStore.Application.DTO_s;
+using BookStore.Core.Entities;
+using BookStore.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
 builder.Services.AddDbContext<BookStoreCodeFirstDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))); //
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<IRepository<Book>, Repository<Book>>();
+builder.Services.AddScoped<IBookManager, BookManager>();
+builder.Services.AddAutoMapper(typeof(BookMappingProfile));
 
 var app = builder.Build();
 
