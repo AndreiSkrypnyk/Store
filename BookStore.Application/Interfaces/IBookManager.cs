@@ -10,5 +10,6 @@ namespace BookStore.Application.Interfaces
     public interface IBookManager
     {
         IList<Book> GetBooks();
+        IList<Book> GetFeaturedBooks();
     }
 }

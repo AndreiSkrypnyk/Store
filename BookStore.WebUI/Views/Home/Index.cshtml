@@ -1,8 +1,29 @@
-﻿@{
+﻿@model List<BookStore.Application.DTO_s.BookDTO>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="hero">
+    <div class="hero-content">
+        <h1>Welcome to My Bookstore</h1>
+        <p>Find your next favorite book today</p>
+    </div>
+    <div class="main-content">
+        <h2>Featured Books</h2>
+        <div class="books">
+            @foreach (var book in Model)
+            {
+                <div class="book">
+                    <img src="image/img book.png" width="200" height="300">
+                    <h3 class="card-text">@book.Title</h3>
+                    <p class="card-text">@book.Author</p>
+                    <p class="card-text">Price: @book.Price</p>
+                </div>
+            }
+        </div>
+        <a asp-controller="Book" asp-action="Books" class="button">View All Books</a>
+    </div>
 </div>
+<footer>
+    <p>&copy; 2023 My bookstore. All right reserved</p>
+</footer>

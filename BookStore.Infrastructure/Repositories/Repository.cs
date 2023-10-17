@@ -22,6 +22,12 @@ namespace BookStore.Infrastructure.Repositories
         {
             return _dbSet.Find(id);
         }
+
+        public List<T> GetFeaturedBook()
+        {
+            return _dbSet.Take(3).ToList();
+        }
+
         public void Create(T item)
         {
             _dbSet.Add(item);

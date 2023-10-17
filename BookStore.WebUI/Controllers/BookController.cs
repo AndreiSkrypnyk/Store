@@ -27,8 +27,18 @@ namespace BookStore.WebUI.Controllers
         {
             var books = _bookManager.GetBooks(); 
             var bookDTOs = _mapper.Map<IList<BookDTO>>(books); 
+
+            return Json(bookDTOs);
+        }
+
+        public IActionResult Books()
+        {
+            var books = _bookManager.GetBooks();
+            var bookDTOs = _mapper.Map<IList<BookDTO>>(books);
+
             return View(bookDTOs);
         }
+
         public IActionResult Privacy()
         {
             return View();

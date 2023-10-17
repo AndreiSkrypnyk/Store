@@ -27,5 +27,11 @@ namespace BookStore.Application.Managers
             var books = _bookRepository.GetBookList();
             return books;
         }
+
+        public IList<Book> GetFeaturedBooks()
+        {
+            var books = _bookRepository.GetFeaturedBook();
+            return books;
+        }
     }
 }

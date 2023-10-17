@@ -1,0 +1,23 @@
+﻿@model List<BookStore.Application.DTO_s.BookDTO>
+@{
+    ViewData["Title"] = "Books Page";
+}
+
+<div class="container">
+    <h1 class="text-center">Books List</h1>
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card">
+                    <img src="@book.Image" class="card-img-top" alt="@book.Title">
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <h6 class="card-title">@book.Author</h6>
+                        <p class="card-text">Price: @book.Price</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
