@@ -36,6 +36,7 @@ namespace BookStore.WebUI.Controllers
 
             return View(bookDTOs);
         }
+
         public IActionResult BookInfo(int Id)
         {
            var book = _bookManager.GetBook(Id);
@@ -43,9 +44,22 @@ namespace BookStore.WebUI.Controllers
 
           return View(bookDTOs);
         }
-        public IActionResult Privacy()
+
+        public IActionResult Search(string query)
         {
-            return View();
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return new EmptyResult();
+            }
+            else
+            {
+                var books = _bookManager.GetBookByName(query);
+                var bookDTOs = _mapper.Map<IList<BookDTO>>(books);
+
+                ViewBag.Query = query;
+
+                return View("Books", bookDTOs);
+            }
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

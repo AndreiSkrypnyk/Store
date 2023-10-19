@@ -225,6 +225,32 @@ footer {
     background: #089da1;
     border-radius: 10px;
 }
+ 
+/*No find message*/
+
+.main h1{
+    position: relative;
+    font-size: 55px;
+    top: 150px;
+    left: 25px;
+}
+
+.main h1 span{
+    color: #089da1;
+}
+
+.main p{
+    margin: 50px;
+    margin-left: 535px; 
+    width: 650px;
+    text-align: justify;
+    line-height: 22px;
+    position: relative;
+    top: 125px;
+    left: 25px;
+    font-size: 22px;
+    
+}
 
 
 /*Book Info*/

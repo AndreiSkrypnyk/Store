@@ -26,6 +26,11 @@ namespace BookStore.Infrastructure.Repositories
             return _context.Books.Take(3).ToList();
         }
 
+        public List<Book> GetBookByName(string query)
+        {
+            return _context.Books.Where(x => x.Title.Contains(query)).ToList();
+        }
+
         public void Create(Book item)
         {
             _context.Books.Add(item);

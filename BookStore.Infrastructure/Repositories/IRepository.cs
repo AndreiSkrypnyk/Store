@@ -9,6 +9,7 @@ namespace BookStore.Infrastructure.Repositories
         List<T> GetBookList(); 
         List<T> GetFeaturedBook();
         Book GetBook(int id);
+        List<Book> GetBookByName(string query);
         void Create(T item); 
         void Update(T item); 
         void Delete(int id); 

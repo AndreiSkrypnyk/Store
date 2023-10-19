@@ -1,6 +1,7 @@
 ﻿using BookStore.Application.Interfaces;
 using BookStore.Core.Entities;
 using BookStore.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Application.Managers
 {
@@ -29,6 +30,12 @@ namespace BookStore.Application.Managers
         {
             var book = _bookRepository.GetBook(id);
             return book;
+        }
+
+        public IList<Book> GetBookByName(string query)
+        {
+            var books = _bookRepository.GetBookByName(query);
+            return books;
         }
     }
 }

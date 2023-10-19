@@ -12,5 +12,6 @@ namespace BookStore.Application.Interfaces
         IList<Book> GetBooks();
         IList<Book> GetFeaturedBooks();
         Book GetBook(int id);
+        IList<Book> GetBookByName(string query);
     }
 }
