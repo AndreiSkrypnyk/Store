@@ -1,26 +1,17 @@
 ﻿using BookStore.Application.Interfaces;
 using BookStore.Core.Entities;
 using BookStore.Infrastructure.Repositories;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BookStore.Application.Managers
 {
     public class BookManager: IBookManager
     {
-        private readonly IServiceProvider _serviceProvider;
         private readonly IRepository<Book> _bookRepository;
 
-        public BookManager(IServiceProvider serviceProvider, IRepository<Book> bookRepository)
-        {
-            _serviceProvider = serviceProvider;
+        public BookManager(IRepository<Book> bookRepository)
+        {    
             _bookRepository = bookRepository;
         }
-        
 
         public IList<Book> GetBooks()
         {
@@ -32,6 +23,12 @@ namespace BookStore.Application.Managers
         {
             var books = _bookRepository.GetFeaturedBook();
             return books;
+        }
+
+        public Book GetBook(int id)
+        {
+            var book = _bookRepository.GetBook(id);
+            return book;
         }
     }
 }

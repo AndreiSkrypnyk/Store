@@ -12,7 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BookStoreCodeFirstDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IRepository<Book>, Repository<Book>>();
+builder.Services.AddScoped<IRepository<Book>, BookRepository>();
 builder.Services.AddScoped<IBookManager, BookManager>();
 builder.Services.AddAutoMapper(typeof(BookMappingProfile));
 

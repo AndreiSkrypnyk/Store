@@ -1,47 +1,45 @@
-﻿using BookStore.Infrastructure.Data;
+﻿using BookStore.Core.Entities;
+using BookStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public class Repository<T> : IRepository<T> 
-        where T : class
+    public class BookRepository : IRepository<Book> 
     {
         private readonly BookStoreCodeFirstDbContext _context;
-        private DbSet<T> _dbSet;
 
-        public Repository(BookStoreCodeFirstDbContext context)
+        public BookRepository(BookStoreCodeFirstDbContext context)
         {
             _context = context;
-            _dbSet = context.Set<T>();
         }
-        public List<T> GetBookList()
+        public List<Book> GetBookList()
         {
-            return _dbSet.ToList();
+            return _context.Books.ToList();
         }
-        public T GetBook(int id)
+        public Book GetBook(int id)
         {
-            return _dbSet.Find(id);
-        }
-
-        public List<T> GetFeaturedBook()
-        {
-            return _dbSet.Take(3).ToList();
+            return _context.Books.FirstOrDefault(x => x.Id == id);
         }
 
-        public void Create(T item)
+        public List<Book> GetFeaturedBook()
         {
-            _dbSet.Add(item);
+            return _context.Books.Take(3).ToList();
         }
-        public void Update(T item)
+
+        public void Create(Book item)
         {
-            _dbSet.Attach(item);
+            _context.Books.Add(item);
+        }
+        public void Update(Book item)
+        {
+            _context.Books.Attach(item);
             _context.Entry(item).State = EntityState.Modified;
         }
         public void Delete(int id)
         {
-            T entity = _dbSet.Find(id);
+            Book entity = _context.Books.Find(id);
             if (entity != null)
-                _dbSet.Remove(entity);
+                _context.Books.Remove(entity);
         }
         public void Save()
         {

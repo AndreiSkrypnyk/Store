@@ -8,6 +8,7 @@ namespace BookStore.Application.DTO_s
         public BookMappingProfile()
         {
             CreateMap<Book, BookDTO>();
+            CreateMap<Book, BookInfoDTO>();
         }
     }
 }

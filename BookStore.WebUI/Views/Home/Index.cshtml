@@ -15,15 +15,12 @@
             {
                 <div class="book">
                     <img src="image/img book.png" width="200" height="300">
-                    <h3 class="card-text">@book.Title</h3>
-                    <p class="card-text">@book.Author</p>
-                    <p class="card-text">Price: @book.Price</p>
+                    <h3>@book.Title</h3>
+                    <p>@book.Author</p>
+                    <p>Price: @book.Price$</p>
                 </div>
             }
         </div>
         <a asp-controller="Book" asp-action="Books" class="button">View All Books</a>
     </div>
 </div>
-<footer>
-    <p>&copy; 2023 My bookstore. All right reserved</p>
-</footer>

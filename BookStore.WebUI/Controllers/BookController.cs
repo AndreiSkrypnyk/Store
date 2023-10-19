@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using BookStore.Application.DTO_s;
 using BookStore.Application.Interfaces;
-using BookStore.Core.Entities;
-using BookStore.Infrastructure.Repositories;
 using BookStore.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -38,7 +36,13 @@ namespace BookStore.WebUI.Controllers
 
             return View(bookDTOs);
         }
+        public IActionResult BookInfo(int Id)
+        {
+           var book = _bookManager.GetBook(Id);
+           var bookDTOs = _mapper.Map<BookInfoDTO>(book);
 
+          return View(bookDTOs);
+        }
         public IActionResult Privacy()
         {
             return View();

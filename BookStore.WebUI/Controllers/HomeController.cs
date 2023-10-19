@@ -11,7 +11,6 @@ namespace BookStore.WebUI.Controllers
         private readonly IBookManager _bookManager;
         private readonly IMapper _mapper;
 
-
         public HomeController(ILogger<HomeController> logger, IBookManager bookManager, IMapper mapper)
         {
             _logger = logger;

@@ -1,0 +1,31 @@
+﻿@model BookStore.Application.DTO_s.BookInfoDTO
+
+@{
+    ViewData["Title"] = "BookInfo Page";
+}
+
+<div class="book-card">
+    <div class="book-frame">
+        <div class="book-image-frame">
+            <img class="book-image" src="~/image/img book.png" alt="Book Cover">
+        </div>
+        <div class="book-details-frame">
+            <h1 class="book-title">@Model.Title</h1>
+            <p class="book-genre">@Model.Genre</p>
+            <p class="book-description">
+                @Model.Description (Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda molestias atque laborum
+                non fuga ex deserunt. Exercitationem velit ducimus praesentium, obcaecati hic voluptate id
+                tenetur fuga illum quidem omnis? Rerum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda molestias atque laborum
+                non fuga ex deserunt. Exercitationem velit ducimus praesentium, obcaecati hic voluptate id
+                tenetur fuga illum quidem omnis? Rerum?)
+            </p>
+            <a href="#" class="add-to-cart">Add to cart</a>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
