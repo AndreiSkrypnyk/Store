@@ -7,9 +7,9 @@ namespace BookStore.Application.Managers
 {
     public class BookManager: IBookManager
     {
-        private readonly IRepository<Book> _bookRepository;
+        private readonly IBookRepository<Book> _bookRepository;
 
-        public BookManager(IRepository<Book> bookRepository)
+        public BookManager(IBookRepository<Book> bookRepository)
         {    
             _bookRepository = bookRepository;
         }

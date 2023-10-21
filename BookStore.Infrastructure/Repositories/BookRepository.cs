@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public class BookRepository : IRepository<Book> 
+    public class BookRepository : IBookRepository<Book> 
     {
         private readonly BookStoreCodeFirstDbContext _context;
 
@@ -43,8 +43,12 @@ namespace BookStore.Infrastructure.Repositories
         public void Delete(int id)
         {
             Book entity = _context.Books.Find(id);
+
             if (entity != null)
-                _context.Books.Remove(entity);
+            {
+                _context.Books.Attach(entity);
+                _context.Entry(entity).State = EntityState.Deleted;
+            }
         }
         public void Save()
         {

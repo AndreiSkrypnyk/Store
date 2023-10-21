@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public interface IRepository<T> : IDisposable
+    public interface IBookRepository<T> : IDisposable
         where T : class
     {
         List<T> GetBookList(); 
