@@ -23,7 +23,7 @@ namespace BookStore.Infrastructure.Repositories
 
         public List<Book> GetFeaturedBook()
         {
-            return _context.Books.Take(3).ToList();
+            return _context.Books.Take(4).ToList();
         }
 
         public List<Book> GetBookByName(string query)

@@ -1,0 +1,84 @@
+﻿@model BookStore.Application.DTO_s.BookInfoDTO
+@{
+    ViewData["Title"] = "Books Page";
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('.minus-btn').on('click', function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var $input = $this.closest('.quantity').find('input');
+            var value = parseInt($input.val());
+
+            if (value > 1) {
+                value = value - 1;
+            } else {
+                value = 1;
+            }
+
+            $input.val(value);
+        });
+
+        $('.plus-btn').on('click', function (e) {
+            e.preventDefault();
+            var $this = $(this);
+            var $input = $this.closest('.quantity').find('input');
+            var value = parseInt($input.val());
+
+            if (value < 100) {
+                value = value + 1;
+            } else {
+                value = 100;
+            }
+
+            $input.val(value);
+        });
+    });
+</script>
+<div class="cart-body">
+    <div class="shopping-cart">
+        <div class="title">
+            <i class="fas fa-shopping-cart"></i> Shopping Cart
+        </div>
+        @for (int i = 0; i < 5; i++)
+        {
+            <div class="item">
+
+                <div class="image">
+
+                    <img src="~/image/img book.png" style="height: 80px;" alt="" />
+                </div>
+
+                <div class="description">
+                    <span>Title</span>
+                    <span>Genre</span>
+                    <span>Author</span>
+                </div>
+
+                <div class="quantity">
+                    <button class="plus-btn" type="button" name="button">
+                        +
+                    </button>
+                    <input type="text" name="name" value="1">
+                    <button class="minus-btn" type="button" name="button">
+                        -
+                    </button>
+                </div>
+
+                <div class="total-price">$549</div>
+
+                <div class="btn-delete">
+                    <span class="delete-btn"><i class="fas fa-times"></i></span>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="cart-button-place">
+        <div class="cart-button">
+            Checkout
+        </div>
+    </div>
+</div>
+
+

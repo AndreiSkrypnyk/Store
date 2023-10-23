@@ -2,25 +2,113 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<section>
+    <div class="main">
 
-<div class="hero">
-    <div class="hero-content">
-        <h1>Welcome to My Bookstore</h1>
-        <p>Find your next favorite book today</p>
-    </div>
-    <div class="main-content">
-        <h2>Featured Books</h2>
-        <div class="books">
-            @foreach (var book in Model)
-            {
-                <div class="book">
-                    <img src="image/img book.png" width="200" height="300">
-                    <h3>@book.Title</h3>
-                    <p>@book.Author</p>
-                    <p>Price: @book.Price$</p>
-                </div>
-            }
+        <div class="main_tag">
+            <h1>WELCOME TO<br><span>BOOK STORE</span></h1>
+
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda molestias atque laborum
+                non fuga ex deserunt. Exercitationem velit ducimus praesentium, obcaecati hic voluptate id
+                tenetur fuga illum quidem omnis? Rerum?
+            </p>
+
         </div>
+
+        <div class="main_img">
+            <img src="~/image/table.png">
+        </div>
+
+    </div>
+</section>
+
+<!--Services-->
+
+<div class="services">
+
+    <div class="services_box">
+
+        <div class="services_card">
+            <i class="fa-solid fa-truck-fast"></i>
+            <h3>Fast Delivery</h3>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </p>
+        </div>
+
+        <div class="services_card">
+            <i class="fa-solid fa-headset"></i>
+            <h3>24 x 7 Services</h3>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </p>
+        </div>
+
+        <div class="services_card">
+            <i class="fa-solid fa-tag"></i>
+            <h3>Best Deal</h3>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </p>
+        </div>
+
+        <div class="services_card">
+            <i class="fa-solid fa-lock"></i>
+            <h3>Secure Payment</h3>
+            <p>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+<!--About-->
+
+<div class="about">
+
+    <div class="about_image">
+        <img src="~/image/about.png">
+    </div>
+    <div class="about_tag">
+        <h1>About Us</h1>
+        <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Beatae cumque atque dolor corporis
+            architecto. Voluptate expedita molestias maxime officia natus consectetur dolor quisquam illo?
+            Quis illum nostrum perspiciatis laboriosam perferendis? Lorem ipsum dolor sit amet consectetur
+            adipisicing elit. Minus ad eius saepe architecto aperiam laboriosam voluptas nobis voluptates
+            id amet eos repellat corrupti harum consectetur, dolorum dolore blanditiis quam quo.
+        </p>
+        <a href="#" class="about_btn">Learn More</a>
+    </div>
+
+</div>
+
+<!--Featured Books-->
+
+<div class="arrivals">
+
+    <h1>Featured Books</h1>
+
+    <div class="arrivals_box">
+        @foreach (var book in Model)
+        {
+            <div class="arrivals_card">
+                <div class="arrivals_image">
+                    <img src="~/image/img book.png">
+                </div>
+                <div class="arrivals_tag">
+                    <p>@book.Title</p>
+                    <div>
+                        <a asp-controller="Book" asp-action="BookInfo" asp-route-id="@book.Id" class="arrivals_btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="view-button-place">
         <a asp-controller="Book" asp-action="Books" class="button">View All Books</a>
     </div>
 </div>
