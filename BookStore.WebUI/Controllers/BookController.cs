@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BookStore.Application.DTO_s;
+using BookStore.Application.DTOs;
 using BookStore.Application.Interfaces;
 using BookStore.WebUI.Models;
 using Microsoft.AspNetCore.Mvc;

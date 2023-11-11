@@ -2,9 +2,10 @@ using BookStore.Application.Interfaces;
 using BookStore.Application.Managers;
 using BookStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using BookStore.Application.DTO_s;
+using BookStore.Application.DTOs;
 using BookStore.Core.Entities;
 using BookStore.Infrastructure.Repositories;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,24 @@ builder.Services.AddDbContext<BookStoreCodeFirstDbContext>(options =>
 builder.Services.AddScoped<IBookRepository<Book>, BookRepository>();
 builder.Services.AddScoped<IBookManager, BookManager>();
 builder.Services.AddAutoMapper(typeof(BookMappingProfile));
+builder.Services.AddScoped<IAccountRepository<User>, AccountRepository>();
+builder.Services.AddScoped<IAccountManager, AccountManager>();
+builder.Services.AddAutoMapper(typeof(BookMappingProfile));
+
+builder.Services.AddAuthentication("Cookie")
+    .AddCookie("Cookie", config =>
+    {
+        config.LoginPath = "/Account/Login";
+        config.AccessDeniedPath = "/Account/AccessDenied";
+    });
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Administrator", builder =>
+    {
+        //builder.RequireClaim(ClaimTypes.Role, "Administrator");
+        builder.RequireAssertion(x => x.User.HasClaim(ClaimTypes.Name, "Admin") );
+    });
+});
 
 var app = builder.Build();
 
@@ -31,6 +50,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

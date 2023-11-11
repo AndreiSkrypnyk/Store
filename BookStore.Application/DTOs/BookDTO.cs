@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookStore.Application.DTO_s
+namespace BookStore.Application.DTOs
 {
     public class BookDTO
     {

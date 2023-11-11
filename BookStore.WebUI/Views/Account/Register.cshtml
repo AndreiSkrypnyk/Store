@@ -1,0 +1,27 @@
+﻿@model UserDTO
+
+<h1>Sign up</h1>
+
+<form asp-controller="Account" asp-action="Register" method="post">
+    <div>
+        <label>UserName</label>
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName"></span>
+    </div>
+    <div>
+        <label>Email</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label>Password</label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+
+    <p>
+        <button type="submit">Sign up</button>
+    </p>
+</form>
+
+<a asp-controller="Account" asp-action="Login">Already a user? Log in</a>

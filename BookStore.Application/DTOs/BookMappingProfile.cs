@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BookStore.Core.Entities;
 
-namespace BookStore.Application.DTO_s
+namespace BookStore.Application.DTOs
 {
     public class BookMappingProfile : Profile
     {
@@ -9,6 +9,8 @@ namespace BookStore.Application.DTO_s
         {
             CreateMap<Book, BookDTO>();
             CreateMap<Book, BookInfoDTO>();
+            CreateMap<UserDTO, User>();
+            CreateMap<User, UserDTO>();
         }
     }
 }
