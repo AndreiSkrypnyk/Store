@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Data
 {
-    public class BookStoreCodeFirstDbContext : IdentityDbContext
+    public class BookStoreCodeFirstDbContext : IdentityDbContext<ApplicationUser>
     {
         public BookStoreCodeFirstDbContext(DbContextOptions<BookStoreCodeFirstDbContext> options) : base(options) { }
 
