@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BookStore.WebUI.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+@if (SignInManager.IsSignedIn(User))
+{
+    var user = await UserManager.GetUserAsync(User);
+    <form id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+        <button class="w-100 btn btn-secondary btn-lg user-button" data-toggle="collapse">
+            <div style="display: flex;">
+                <img src="~/image/icon_user.png" class="user-avatar">
+                <div class="user-info">
+                    <div>@($"{user.FirstName} {user.LastName}")</div>
+                    <div>@($"{user.Email}")</div>
+                </div>
+            </div>
+        </button>
+    </form>
+    
+@*
+    <li class="nav-item">
+        <button></button>
+        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@($"{user.FirstName} {user.LastName}")</a>
+        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
+    </li>*@
+}
+else
+{
+    var user = await UserManager.GetUserAsync(User);
+    <form id="manage" asp-area="Identity" asp-page="/Account/Login" title="Manage">
+        <button class="w-100 btn btn-secondary btn-lg user-button" data-toggle="collapse">
+            <div style="display: flex;">
+                <img src="~/image/icon_user.png" class="user-avatar">
+                <div class="user-info">
+                    <div>
+                        <a asp-area="Identity" asp-page="/Account/Login">Log in</a> | <a asp-area="Identity" asp-page="/Account/Register">Register</a>
+                    </div>
+                    <div><h5>You are't authorized!</h5></div>
+                </div>
+            </div>
+        </button>
+    </form>
+}

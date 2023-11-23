@@ -479,19 +479,18 @@ section .main .main_img img{
 	color: #43484D;
 	font-weight: 300;
 } 
-button[class*=btn] {
-	width: 30px;
-	height: 30px;
-	background-color: #E1E8EE;
-	border-radius: 6px;
-	border: none;
-	cursor: pointer;
-}
+
 .plus-btn,
 .minus-btn {
     font-weight: bold;
     font-size: 15px;
     color: #202020;
+    width: 30px;
+    height: 30px;
+    background-color: #E1E8EE;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
 }  
 .total-price {
 	width: 83px;
@@ -514,3 +513,83 @@ button[class*=btn] {
     border-radius: 5px;
     transition: 0.4s ease;
 }
+
+/*Auth*/
+
+body {
+    height: 100%;
+    margin-bottom: 60px;
+    font-family: Roboto,sans-serif;
+}
+
+/*tab navigation*/
+.login-logout-card .card-header {
+    padding: 0px 0px 12px 0px;
+}
+
+.login-logout-card ul.nav-tabs {
+    margin: 0px 0px -12px 0px;
+}
+
+.login-logout-card li.nav-item {
+    width: 50%;
+}
+
+.login-logout-card a.nav-link {
+    font-size: 1rem;
+    color: #495057;
+    text-align: center;
+    padding: 1rem;
+}
+
+.login-logout-card .card-body {
+    padding: 10px 20px;
+}
+
+/*Burger menu*/
+
+.navbar-toggler:hover {
+    background-color: #ddd;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none !important;
+}
+
+.btn-close:hover {
+    background-color: #ccc;
+}
+
+.btn-close:focus {
+    box-shadow: none !important;
+}
+
+/*Burger account*/
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-button img {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.user-button {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.user-button:hover {
+    background-color: #ccc;
+}
+.user-info {
+    display: block;
+    text-align: left;
+    margin-left: 10px;
+}
+

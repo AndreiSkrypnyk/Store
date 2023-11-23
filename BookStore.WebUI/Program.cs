@@ -5,14 +5,28 @@ using Microsoft.EntityFrameworkCore;
 using BookStore.Application.DTOs;
 using BookStore.Core.Entities;
 using BookStore.Infrastructure.Repositories;
-using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+using BookStore.WebUI.Data;
+using BookStore.WebUI.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("AuthDbContextConnection") ?? throw new InvalidOperationException("Connection string 'AuthDbContextConnection' not found.");
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<BookStoreCodeFirstDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddDbContext<AuthDbContext>(options => options.UseSqlServer(connectionString));
+
+builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<AuthDbContext>();
+
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredUniqueChars = 0;
+    options.Password.RequireNonAlphanumeric = false;
+});
+
 builder.Services.AddScoped<IBookRepository<Book>, BookRepository>();
 builder.Services.AddScoped<IBookManager, BookManager>();
 builder.Services.AddAutoMapper(typeof(BookMappingProfile));
@@ -20,28 +34,14 @@ builder.Services.AddScoped<IAccountRepository<User>, AccountRepository>();
 builder.Services.AddScoped<IAccountManager, AccountManager>();
 builder.Services.AddAutoMapper(typeof(BookMappingProfile));
 
-builder.Services.AddAuthentication("Cookie")
-    .AddCookie("Cookie", config =>
-    {
-        config.LoginPath = "/Account/Login";
-        config.AccessDeniedPath = "/Account/AccessDenied";
-    });
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Administrator", builder =>
-    {
-        //builder.RequireClaim(ClaimTypes.Role, "Administrator");
-        builder.RequireAssertion(x => x.User.HasClaim(ClaimTypes.Name, "Admin") );
-    });
-});
+builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -56,5 +56,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapRazorPages();
 
 app.Run();
