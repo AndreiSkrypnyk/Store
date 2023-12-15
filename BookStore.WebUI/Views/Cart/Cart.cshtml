@@ -1,4 +1,7 @@
-﻿@model BookInfoDTO
+﻿@using BookStore.Core.Entities;
+@*@model BookInfoDTO*@
+@model ShoppingCart
+
 @{
     ViewData["Title"] = "Books Page";
 }
@@ -41,7 +44,7 @@
         <div class="title">
             <i class="fas fa-shopping-cart"></i> Shopping Cart
         </div>
-        @for (int i = 0; i < 5; i++)
+@*        @foreach ()*@
         {
             <div class="item">
 
@@ -51,9 +54,9 @@
                 </div>
 
                 <div class="description">
-                    <span>Title</span>
-                    <span>Genre</span>
-                    <span>Author</span>
+                    <span>@Model.Book.Title</span>
+                    <span>@Model.Book.Genre</span>
+                    <span>@Model.Book.Author</span>
                 </div>
 
                 <div class="quantity">
@@ -66,7 +69,7 @@
                     </button>
                 </div>
 
-                <div class="total-price">$549</div>
+                <div class="total-price">@Model.Book.Price$</div>
 
                 <div class="btn-delete">
                     <span class="delete-btn"><i class="fas fa-times"></i></span>

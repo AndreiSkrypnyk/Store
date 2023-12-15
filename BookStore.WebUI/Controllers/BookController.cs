@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using BookStore.Application.DTOs;
 using BookStore.Application.Interfaces;
+using BookStore.Core.Entities;
+using BookStore.Infrastructure.Repositories;
 using BookStore.WebUI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Security.Claims;
 
 namespace BookStore.WebUI.Controllers
 {
@@ -12,13 +16,15 @@ namespace BookStore.WebUI.Controllers
         private readonly ILogger<BookController> _logger;
         private readonly IBookManager _bookManager;
         private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
         
 
-        public BookController(ILogger<BookController> logger, IBookManager bookManager, IMapper mapper)
+        public BookController(ILogger<BookController> logger, IBookManager bookManager, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _bookManager = bookManager;
             _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
         
         public IActionResult Index()
@@ -39,10 +45,47 @@ namespace BookStore.WebUI.Controllers
 
         public IActionResult BookInfo(int Id)
         {
-           var book = _bookManager.GetBook(Id);
-           var bookDTOs = _mapper.Map<BookInfoDTO>(book);
+            var book = _bookManager.GetBook(Id);
+            ShoppingCart cart = new()
+            {
+                Book = book,
+                Count = 1,
+                BookId = Id
+            };
 
-          return View(bookDTOs);
+           //var bookDTOs = _mapper.Map<BookInfoDTO>(book);
+
+          return View(cart);
+        }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult BookInfo(ShoppingCart shoppingCart)
+        {
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId= userId;
+            shoppingCart.Id = 0;
+
+            ShoppingCart cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ApplicationUserId == userId &&
+            u.BookId == shoppingCart.BookId);
+
+            if (cartFromDb != null)
+            {
+                //shopping cart exists
+                cartFromDb.Count += shoppingCart.Count;
+                _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.Save();
+            }
+            else
+            {
+                //add cart record
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
+                _unitOfWork.Save();
+            }
+            TempData["success"] = "Cart updated successfully";
+
+            return RedirectToAction(nameof(Books));
         }
 
         public IActionResult Search(string query)
