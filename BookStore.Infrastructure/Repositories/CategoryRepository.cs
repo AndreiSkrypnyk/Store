@@ -9,13 +9,17 @@ using System.Threading.Tasks;
 
 namespace BookStore.Infrastructure.Repositories
 {
-    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
-        private readonly BookStoreCodeFirstDbContext _db;
-
-        public ApplicationUserRepository(BookStoreCodeFirstDbContext db) : base(db)
+        private BookStoreCodeFirstDbContext _db;
+        public CategoryRepository(BookStoreCodeFirstDbContext db) : base(db)
         {
             _db = db;
+        }
+
+        public void Update(Category obj)
+        {
+            _db.Categories.Update(obj);
         }
     }
 }

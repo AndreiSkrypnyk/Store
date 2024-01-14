@@ -1,6 +1,6 @@
 ﻿using BookStore.Core.Entities;
 
-namespace BookStore.Infrastructure.Repositories
+namespace BookStore.Infrastructure.Repositories.IRepositories
 {
     public interface IShoppingCartRepository : IRepository<ShoppingCart>
     {

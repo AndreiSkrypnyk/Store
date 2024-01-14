@@ -1,6 +1,6 @@
 ﻿using BookStore.Application.Interfaces;
 using BookStore.Core.Entities;
-using BookStore.Infrastructure.Repositories;
+using BookStore.Infrastructure.Repositories.IRepositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Application.Managers

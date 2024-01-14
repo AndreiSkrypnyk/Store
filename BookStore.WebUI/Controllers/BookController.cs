@@ -2,7 +2,7 @@
 using BookStore.Application.DTOs;
 using BookStore.Application.Interfaces;
 using BookStore.Core.Entities;
-using BookStore.Infrastructure.Repositories;
+using BookStore.Infrastructure.Repositories.IRepositories;
 using BookStore.WebUI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,6 @@
 ﻿using BookStore.Core.Entities;
 using BookStore.Infrastructure.Data;
+using BookStore.Infrastructure.Repositories.IRepositories;
 
 namespace BookStore.Infrastructure.Repositories
 {

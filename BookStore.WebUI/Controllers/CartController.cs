@@ -1,6 +1,6 @@
 ﻿using BookStore.Core.Entities;
 using BookStore.Core.ViewModels;
-using BookStore.Infrastructure.Repositories;
+using BookStore.Infrastructure.Repositories.IRepositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;

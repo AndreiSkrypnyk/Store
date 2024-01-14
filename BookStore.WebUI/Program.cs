@@ -6,6 +6,7 @@ using BookStore.Application.DTOs;
 using BookStore.Core.Entities;
 using BookStore.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
+using BookStore.Infrastructure.Repositories.IRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,8 +25,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 builder.Services.AddScoped<IBookRepository<Book>, BookRepository>();
 builder.Services.AddScoped<IBookManager, BookManager>();
-builder.Services.AddScoped<IAccountRepository<User>, AccountRepository>();
-builder.Services.AddScoped<IAccountManager, AccountManager>();
+
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddAutoMapper(typeof(BookMappingProfile));
 
@@ -50,7 +50,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();

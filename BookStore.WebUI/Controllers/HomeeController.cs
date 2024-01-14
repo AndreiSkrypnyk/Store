@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.WebUI.Controllers
 {
-    public class HomeController : Controller
+    public class HomeeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger<HomeeController> _logger;
         private readonly IBookManager _bookManager;
         private readonly IMapper _mapper;
 
-        public HomeController(ILogger<HomeController> logger, IBookManager bookManager, IMapper mapper)
+        public HomeeController(ILogger<HomeeController> logger, IBookManager bookManager, IMapper mapper)
         {
             _logger = logger;
             _bookManager = bookManager;
