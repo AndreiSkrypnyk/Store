@@ -1,0 +1,53 @@
+﻿@using BookStore.Core.Entities;
+@model ShoppingCart
+
+@{
+    ViewData["Title"] = "BookInfo Page";
+}
+<form method="post">
+    <input hidden asp-for="BookId" />
+    <div class="book-card">
+        <div class="book-frame">
+            <div class="book-image-frame">
+                <img class="book-image" src="~/image/img book.png" alt="Book Cover">
+            </div>
+            <div class="book-details-frame">
+                <h1 class="book-title">@Model.Book.Title</h1>
+                <p class="book-genre">@Model.Book.Genre</p>
+                <p class="book-genre">@Model.Book.Author</p>
+                <p class="book-description">
+                    @Model.Book.Description (Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda molestias atque laborum
+                    non fuga ex deserunt. Exercitationem velit ducimus praesentium, obcaecati hic voluptate id
+                    tenetur fuga illum quidem omnis? Rerum? Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda molestias atque laborum
+                    non fuga ex deserunt. Exercitationem velit ducimus praesentium, obcaecati hic voluptate id
+                    tenetur fuga illum quidem omnis? Rerum?)
+                </p>
+                <p class="book-genre">Price: @Model.Book.Price$</p>
+
+                <div class="col-md-4">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text bg-primary text-white border-0 fw-semibold"
+                              id="inputGroup-sizing-default">
+                            Count
+                        </span>
+                        <input asp-for="Count" type="number" value="1" class="form-control text-end"
+                               aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                    </div>
+                </div>
+
+                <button type="submit"
+                        class="add-to-cart">
+                    Add to cart
+                </button>
+
+                @*<a href="#" class="add-to-cart">Add to cart</a>*@
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+
+
