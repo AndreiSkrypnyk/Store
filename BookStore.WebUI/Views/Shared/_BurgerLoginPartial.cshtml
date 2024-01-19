@@ -1,9 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using BookStore.Infrastructure.Data
 
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
@@ -13,7 +12,8 @@
             <div style="display: flex;">
                 <img src="~/image/icon_user.png" class="user-avatar">
                 <div class="user-info">
-                    <div>@($"{user.FirstName} {user.LastName}")</div>
+                    <!-- TODO: Фікс 1 -->
+                    @*<div>@($"{user.FirstName} {user.LastName}")</div>*@
                     <div>@($"{user.Email}")</div>
                 </div>
             </div>

@@ -1,10 +1,11 @@
 ﻿using BookStore.Core.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookStore.Infrastructure.Data
 {
-    public class BookStoreCodeFirstDbContext : IdentityDbContext<ApplicationUser>
+    public class BookStoreCodeFirstDbContext : IdentityDbContext<IdentityUser>
     {
         public BookStoreCodeFirstDbContext(DbContextOptions<BookStoreCodeFirstDbContext> options) : base(options) { }
 
@@ -16,6 +17,7 @@ namespace BookStore.Infrastructure.Data
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<ShoppingCart> ShoppingCarts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
