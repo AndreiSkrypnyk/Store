@@ -81,7 +81,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
             _unitOfWork.Company.Remove(CompanyToBeDeleted);
             _unitOfWork.Save();
 
-            return Json(new { success = true, message = "Delete Successfull" });
+            return Json(new { success = true, message = "Company deleted Successfully" });
         }
 
         #endregion

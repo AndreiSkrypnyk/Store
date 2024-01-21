@@ -85,13 +85,15 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
                 if (productVM.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(productVM.Product);
+                    TempData["success"] = "Product created successfully";
                 }
                 else
                 {
                     _unitOfWork.Product.Update(productVM.Product);
+                    TempData["success"] = "Product updated successfully";
                 }
                 _unitOfWork.Save();
-                TempData["success"] = "Product created successfully";
+                
                 return RedirectToAction("Index");
             }
             else
@@ -136,8 +138,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
             _unitOfWork.Product.Remove(productToBeDeleted);
             _unitOfWork.Save();
 
-            List<Product> objProductList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
-            return Json(new { data = objProductList });
+            return Json(new { success = true, message = "Product deleted successfully" });
         }
 
         #endregion
