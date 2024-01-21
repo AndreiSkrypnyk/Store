@@ -7,14 +7,16 @@ using BookStore.Core.Entities;
 using BookStore.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using BookStore.Infrastructure.Repositories.IRepositories;
+using Microsoft.AspNetCore.Identity.UI.Services;
+using BookStore.Utility;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<BookStoreCodeFirstDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<BookStoreCodeFirstDbContext>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<BookStoreCodeFirstDbContext>().AddDefaultTokenProviders();
 
 builder.Services.Configure<IdentityOptions>(options =>
 {
@@ -23,10 +25,18 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Password.RequireNonAlphanumeric = false;
 });
 
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
+
 builder.Services.AddScoped<IBookRepository<Book>, BookRepository>();
 builder.Services.AddScoped<IBookManager, BookManager>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddAutoMapper(typeof(BookMappingProfile));
 
 builder.Services.AddControllersWithViews();

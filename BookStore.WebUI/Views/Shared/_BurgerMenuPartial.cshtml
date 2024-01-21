@@ -1,8 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using BookStore.Infrastructure.Data
 
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 <div class="navbar bg-transparent">
     <div class="container-fluid" style="height:auto">
@@ -24,7 +24,7 @@
                 <ul class="navbar-nav justify-content-end flex-grow-1">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-controller="Home" asp-action="Index">Home</a>
+                        <a class="nav-link active" aria-current="page" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" asp-controller="Book" asp-action="Books">Catalog</a>
@@ -36,7 +36,7 @@
                 </ul>
                 @if (SignInManager.IsSignedIn(User))
                 {
-                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "Customer" })">
                         <button id="logout-button" type="submit" class="w-100 btn btn-lg btn-primary">Log out</button>
                     </form>
                 }

@@ -1,31 +1,24 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using BookStore.Infrastructure.Data
+﻿@using BookStore.Infrastructure.Data;
+@using Microsoft.AspNetCore.Identity
 
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
 
 @if (SignInManager.IsSignedIn(User))
 {
     var user = await UserManager.GetUserAsync(User);
+    var applicationUser = user as ApplicationUser;
     <form id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
         <button class="w-100 btn btn-secondary btn-lg user-button" data-toggle="collapse">
             <div style="display: flex;">
                 <img src="~/image/icon_user.png" class="user-avatar">
                 <div class="user-info">
-                    <div>@($"{user.FirstName} {user.LastName}")</div>
+                    <div>@($"{(applicationUser?.FirstName ?? "")} {(applicationUser?.LastName ?? "")}")</div>
                     <div>@($"{user.Email}")</div>
                 </div>
             </div>
         </button>
     </form>
-    
-@*
-    <li class="nav-item">
-        <button></button>
-        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@($"{user.FirstName} {user.LastName}")</a>
-        <a id="manage" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">@UserManager.GetUserName(User)</a>
-    </li>*@
 }
 else
 {

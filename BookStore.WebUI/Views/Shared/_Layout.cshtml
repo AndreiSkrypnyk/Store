@@ -23,8 +23,8 @@
     </script>
 </head>
 <body>
-    
-    <header>
+
+    <header style="background-color: #333; color: #fff; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100;">
         <div style="display: flex">
             <partial name="_BurgerMenuPartial.cshtml" />
             <div class="logo">
@@ -34,26 +34,29 @@
         <nav>
             <ul>
                 <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Book" asp-action="Books">Catalog</a></li>             
+                <li><a asp-area="" asp-controller="Book" asp-action="Books">Catalog</a></li>
                 <li>
                     <a class="nav-ul-li-a" asp-controller="Cart" asp-action="Index">
                         <i class="fas fa-shopping-cart"></i>&nbsp; Cart
                     </a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Content Managment
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="nav-item">
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                    </ul>
-                </li>
+                @if (User.IsInRole(SD.Role_Admin))
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Content Managment
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                        </ul>
+                    </li>
+                }
             </ul>
         </nav>
         <div class="search">
