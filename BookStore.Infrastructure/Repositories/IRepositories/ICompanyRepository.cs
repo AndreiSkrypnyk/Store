@@ -2,8 +2,8 @@
 
 namespace BookStore.Infrastructure.Repositories.IRepositories
 {
-    public interface IProductRepository : IRepository<Product>
+    public interface ICompanyRepository : IRepository<Company>
     {
-        void Update(Product obj);
+        void Update(Company obj);
     }
 }

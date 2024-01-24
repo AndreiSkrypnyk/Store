@@ -3,7 +3,6 @@ using BookStore.Infrastructure.Repositories.IRepositories;
 using BookStore.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace BookStore.WebUI.Areas.Admin.Controllers
 {
