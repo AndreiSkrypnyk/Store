@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using BookStore.Utility;
-using BookStore.Infrastructure.Data;
+using BookStore.Core.Entities;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using BookStore.Infrastructure.Repositories.IRepositories;
 
