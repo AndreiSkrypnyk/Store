@@ -1,4 +1,4 @@
-namespace BookStore.WebUI.Models
+namespace BookStore.Core.Entities
 {
     public class ErrorViewModel
     {

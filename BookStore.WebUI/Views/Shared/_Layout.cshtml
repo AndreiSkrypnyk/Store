@@ -28,15 +28,15 @@
         <div style="display: flex">
             <partial name="_BurgerMenuPartial.cshtml" />
             <div class="logo">
-                <a asp-area="" asp-controller="Home" asp-action="Index">Bookstore</a>
+                <a asp-area="Customer" asp-controller="Home" asp-action="Index">Bookstore</a>
             </div>
         </div>
         <nav>
             <ul>
-                <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
+                <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
                 <li><a asp-area="" asp-controller="Book" asp-action="Books">Catalog</a></li>
                 <li>
-                    <a class="nav-ul-li-a" asp-controller="Cart" asp-action="Index">
+                    <a class="nav-ul-li-a" asp-area="Customer" asp-controller="Cart" asp-action="Index">
                         <i class="fas fa-shopping-cart"></i>&nbsp; Cart
                     </a>
                 </li>
