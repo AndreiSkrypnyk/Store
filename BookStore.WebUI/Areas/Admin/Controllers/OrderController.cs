@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.WebUI.Areas.Admin.Controllers
 {
+	[Area("admin")]
 	public class OrderController : Controller
 	{
 		private readonly IUnitOfWork _unitOfWork;
