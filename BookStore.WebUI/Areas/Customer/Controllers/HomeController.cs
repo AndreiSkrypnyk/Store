@@ -4,6 +4,7 @@ using BookStore.Core.Entities;
 using BookStore.Infrastructure.Repositories.IRepositories;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
+using BookStore.Utility;
 
 namespace BookStore.Areas.Customer.Controllers
 {
@@ -60,6 +61,8 @@ namespace BookStore.Areas.Customer.Controllers
                 //add cart record
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
                 _unitOfWork.Save();
+                HttpContext.Session.SetInt32(SD.SessionCart,
+                    _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
             }
             TempData["success"] = "Cart updated successfully";
 
