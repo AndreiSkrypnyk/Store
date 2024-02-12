@@ -40,6 +40,10 @@
                         <i class="fas fa-shopping-cart"></i>&nbsp; Cart
                     </a>
                 </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li><a asp-area="Admin" asp-controller="Order" asp-action="Index">Order Manage</a></li>
+                }
                 @if (User.IsInRole(SD.Role_Admin))
                 {
                     <li class="nav-item dropdown">
