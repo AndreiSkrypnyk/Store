@@ -14,7 +14,12 @@
                 <img src="~/image/icon_user.png" class="user-avatar">
                 <div class="user-info">
                     <div>@($"{(applicationUser?.FirstName ?? "")} {(applicationUser?.LastName ?? "")}")</div>
+                    @if ((applicationUser?.FirstName == null) || (applicationUser?.LastName == null))
+                    {
+                        <div>@($"{applicationUser?.Name}")</div>
+                    }
                     <div>@($"{user.Email}")</div>
+                    
                 </div>
             </div>
         </button>
