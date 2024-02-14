@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -37,9 +40,11 @@
                 <li><a asp-area="" asp-controller="Book" asp-action="Books">Catalog</a></li>
                 <li>
                     <a class="nav-ul-li-a" asp-area="Customer" asp-controller="Cart" asp-action="Index">
-                        <i class="fas fa-shopping-cart"></i>&nbsp; Cart
+                        Cart
+                        @await Component.InvokeAsync("ShoppingCart")
                     </a>
                 </li>
+
                 @if (User.Identity.IsAuthenticated)
                 {
                     <li><a asp-area="Admin" asp-controller="Order" asp-action="Index">Order Manage</a></li>
@@ -61,6 +66,9 @@
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a>
                             </li>
                             <li><hr class="dropdown-divider"></li>
+                            <li class="nav-item">
+                                <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Register">Create User</a>
+                            </li>
                         </ul>
                     </li>
                 }
