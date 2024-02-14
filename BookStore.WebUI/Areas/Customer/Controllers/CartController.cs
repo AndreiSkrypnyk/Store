@@ -184,6 +184,8 @@ namespace BookStore.Areas.Customer.Controllers
 					_unitOfWork.Save();
 				}
 				
+				HttpContext.Session.Clear(); // because we have 1 sessin in application 
+				
 			}
 			
 			List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
