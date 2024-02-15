@@ -10,6 +10,7 @@ using BookStore.Infrastructure.Repositories.IRepositories;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using BookStore.Utility;
 using Stripe;
+using BookStore.Infrastructure.DBInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,6 +54,7 @@ builder.Services.AddScoped<IBookManager, BookManager>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
+builder.Services.AddScoped<IDBInitializer, DBInitializer>();
 builder.Services.AddAutoMapper(typeof(BookMappingProfile));
 
 builder.Services.AddControllersWithViews();
@@ -78,9 +80,21 @@ app.UseAuthorization();
 
 app.UseSession();
 
+SeedDatabase();
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
 
 app.Run();
+
+
+void SeedDatabase()
+{
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbInitializer = scope.ServiceProvider.GetRequiredService<IDBInitializer>();
+        dbInitializer.Initialize();
+    }
+}
