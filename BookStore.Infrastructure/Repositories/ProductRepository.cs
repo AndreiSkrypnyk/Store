@@ -26,6 +26,7 @@ namespace BookStore.Infrastructure.Repositories
                 objFromDb.Description = obj.Description;
                 objFromDb.CategoryId = obj.CategoryId;
                 objFromDb.Author = obj.Author;
+                objFromDb.ProductImages = obj.ProductImages;
                 //if (obj.ImageUrl != null)
                 //{
                 //    objFromDb.ImageUrl = obj.ImageUrl;
