@@ -4,6 +4,7 @@ using BookStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookStore.Infrastructure.BookStore.Infrastructure.Migrations
 {
     [DbContext(typeof(BookStoreCodeFirstDbContext))]
-    partial class BookStoreCodeFirstDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240221124617_removeImageUrlFromProduct")]
+    partial class removeImageUrlFromProduct
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -446,28 +449,6 @@ namespace BookStore.Infrastructure.BookStore.Infrastructure.Migrations
                         });
                 });
 
-            modelBuilder.Entity("BookStore.Core.Entities.ProductImage", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ImageUrl")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("ProductImages");
-                });
-
             modelBuilder.Entity("BookStore.Core.Entities.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
@@ -815,17 +796,6 @@ namespace BookStore.Infrastructure.BookStore.Infrastructure.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("BookStore.Core.Entities.ProductImage", b =>
-                {
-                    b.HasOne("BookStore.Core.Entities.Product", "Product")
-                        .WithMany("ProductImages")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("BookStore.Core.Entities.ShoppingCart", b =>
                 {
                     b.HasOne("BookStore.Core.Entities.ApplicationUser", "ApplicationUser")
@@ -908,11 +878,6 @@ namespace BookStore.Infrastructure.BookStore.Infrastructure.Migrations
             modelBuilder.Entity("BookStore.Core.Entities.Order", b =>
                 {
                     b.Navigation("OrderItems");
-                });
-
-            modelBuilder.Entity("BookStore.Core.Entities.Product", b =>
-                {
-                    b.Navigation("ProductImages");
                 });
 #pragma warning restore 612, 618
         }
