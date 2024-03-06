@@ -10,9 +10,9 @@
             <span class="fas fa-bars text-white"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header" style="background-color: #333">
+            <div class="offcanvas-header" style="color:#6C757D; background-color: #192E2F">
                 <div class="logo" style="font-size:x-large;">
-                    <a asp-controller="Home" asp-action="Index">Bookstore</a>
+                    <a style="color: #fff; text-decoration: none;" asp-area="Customer" asp-controller="Home" asp-action="Index">Bookstore</a>
                 </div>
                 <button type="button" class="btn-close fas fa-close text-white" style="font-size: 24px; background-image: none" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
@@ -27,11 +27,14 @@
                         <a class="nav-link active" aria-current="page" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" asp-controller="Book" asp-action="Books">Catalog</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link active" aria-current="page" asp-controller="Cart" asp-action="Index">Cart</a>
                     </li>
+                    @if (SignInManager.IsSignedIn(User))
+                    {
+                        <li class ="nav-item">
+                            <a class="nav-link active" aria-current="page" asp-area="Admin" asp-controller="Order" asp-action="Index">Order Manage</a>
+                        </li>
+                    }
 
                 </ul>
                 @if (SignInManager.IsSignedIn(User))

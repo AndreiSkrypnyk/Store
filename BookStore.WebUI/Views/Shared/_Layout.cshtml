@@ -10,36 +10,28 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/BookStore.WebUI.styles.css" asp-append-version="true" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css" />
-    <script>
-        function performSearch() {
-            var query = document.getElementById("query").value;
-            if (query.trim() === "") {
-                return false;
-            }
-        }
-    </script>
 </head>
 <body>
-
-    <header style="background-color: #333; color: #fff; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100;">
-        <div style="display: flex">
+    <header style="color:#6C757D; background-color: #192E2F; padding: 20px 60px; display: flex;">
+        <div style="display: flex; align-items: center">
             <partial name="_BurgerMenuPartial.cshtml" />
             <div class="logo">
-                <a asp-area="Customer" asp-controller="Home" asp-action="Index">Bookstore</a>
+                <a style="color: #fff; text-decoration: none;" asp-area="Customer" asp-controller="Home" asp-action="Index">Bookstore</a>
             </div>
         </div>
-        <nav>
-            <ul>
-                <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
-                <li><a asp-area="" asp-controller="Book" asp-action="Books">Catalog</a></li>
-                <li>
-                    <a class="nav-ul-li-a" asp-area="Customer" asp-controller="Cart" asp-action="Index">
+        <nav style="flex: 1;display: flex; justify-content:center; align-items: center;">
+
+            <ul style="display: flex; justify-content: center; list-style: none; margin: 0; margin-right: 20%;">
+                <li style="margin-right: 20px;">
+                    <a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+                </li>
+                <li style="margin-right: 20px;">
+                    <a asp-area="Customer" asp-controller="Cart" asp-action="Index">
                         Cart
                         @await Component.InvokeAsync("ShoppingCart")
                     </a>
@@ -51,9 +43,9 @@
                 }
                 @if (User.IsInRole(SD.Role_Admin))
                 {
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Content Managment
+                    <li>
+                        <a class="nav ul li a" style="margin-left: 20px;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Content Managment<i class="bi bi-caret-down-fill"></i>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="nav-item">
@@ -77,12 +69,6 @@
                 }
             </ul>
         </nav>
-        <div class="search">
-            <form asp-area="" asp-controller="Book" asp-action="Search" method="get" onsubmit="return performSearch()">
-                <input type="text" id="query" name="query" placeholder="Search...">
-                <button type="submit">Go</button>
-            </form>
-        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -91,8 +77,10 @@
         </main>
     </div>
 
-    <footer>
-        <p>&copy; 2023 My bookstore. All right reserved</p>
+    <footer class="border-top footer bg-primary text-muted ">
+        <div class="text-center text-light">
+            <p>&copy; 2023 - BookStore - Made with <i class="bi bi-heart-fill"></i> by Andrii Skrypyk. All right reserved</p>
+        </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
