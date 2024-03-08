@@ -1,9 +1,5 @@
-using BookStore.Application.Interfaces;
-using BookStore.Application.Managers;
 using BookStore.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using BookStore.Application.DTOs;
-using BookStore.Core.Entities;
 using BookStore.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
 using BookStore.Infrastructure.Repositories.IRepositories;
@@ -54,13 +50,9 @@ builder.Services.AddSession(options => {
     options.Cookie.IsEssential = true;
 });
 
-builder.Services.AddScoped<IBookRepository<Book>, BookRepository>();
-builder.Services.AddScoped<IBookManager, BookManager>();
-
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.AddScoped<IDBInitializer, DBInitializer>();
-builder.Services.AddAutoMapper(typeof(BookMappingProfile));
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();

@@ -10,7 +10,7 @@ using System.Security.Claims;
 
 namespace BookStore.WebUI.Areas.Admin.Controllers
 {
-	[Area("admin")]
+	[Area(nameof(Admin))]
     [Authorize]
 	public class OrderController : Controller
 	{
@@ -131,7 +131,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Details), new { orderId = OrderVM.OrderHeader.Id });
         }
 
-        [ActionName("Details")]
+        [ActionName(nameof(Details))]
         [HttpPost]
         public IActionResult Details_PAY_NOW()
         {
