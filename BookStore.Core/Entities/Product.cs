@@ -39,7 +39,7 @@ namespace BookStore.Core.Entities
         public double Price100 { get; set; }
 
         public int CategoryId { get; set; }
-        [ForeignKey("CategoryId")]
+        [ForeignKey(nameof(CategoryId))]
         [ValidateNever]
         public Category Category { get; set; }
 

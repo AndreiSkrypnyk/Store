@@ -8,7 +8,7 @@ using BookStore.Utility;
 
 namespace BookStore.Areas.Customer.Controllers
 {
-    [Area("Customer")]
+    [Area(nameof(Customer))]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

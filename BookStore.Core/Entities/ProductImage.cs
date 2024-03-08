@@ -9,7 +9,7 @@ namespace BookStore.Core.Entities
         [Required]
         public string ImageUrl { get; set; }
         public int ProductId { get; set; }
-        [ForeignKey("ProductId")]
+        [ForeignKey(nameof(ProductId))]
         public Product Product { get; set; }
     }
 }

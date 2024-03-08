@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace BookStore.Areas.Customer.Controllers
 {
-	[Area("Customer")]
+	[Area(nameof(Customer))]
 	[Authorize]
 	public class CartController : Controller
 	{
@@ -77,7 +77,7 @@ namespace BookStore.Areas.Customer.Controllers
 		}
 
 		[HttpPost]
-		[ActionName("Summary")]
+		[ActionName(nameof(Summary))]
 		public IActionResult SummaryPOST()
 		{
 			var claimsIdentity = (ClaimsIdentity)User.Identity;
