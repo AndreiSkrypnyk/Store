@@ -2,8 +2,6 @@
 using BookStore.Core.Entities;
 using BookStore.Utility;
 using Microsoft.AspNetCore.Authorization;
-using BookStore.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 using BookStore.Core.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Identity;
