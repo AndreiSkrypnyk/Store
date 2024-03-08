@@ -9,7 +9,7 @@ using BookStore.Infrastructure.Repositories.IRepositories;
 
 namespace BookStore.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(nameof(Admin))]
     [Authorize(Roles = SD.Role_Admin)]
     public class UserController : Controller
     {
@@ -80,7 +80,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
                     _unitOfWork.Save();
                 }
             }
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         #region API CALLS

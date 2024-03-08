@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace BookStore.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(nameof(Admin))]
     [Authorize(Roles = SD.Role_Admin)]
     public class CompanyController : Controller
     {
@@ -52,7 +52,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
                     TempData["success"] = "Company updated successfully";
                 }
                 _unitOfWork.Save();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             else
             {

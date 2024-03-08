@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStore.WebUI.Areas.Admin.Controllers
 {
-    [Area("Admin")]
+    [Area(nameof(Admin))]
     [Authorize(Roles = SD.Role_Admin)]
     public class CategoryController : Controller
     {
@@ -38,7 +38,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
                 _unitOfWork.Category.Add(obj);
                 _unitOfWork.Save();
                 TempData["success"] = "Category created successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View();
         }
@@ -67,7 +67,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
                 _unitOfWork.Category.Update(obj);
                 _unitOfWork.Save();
                 TempData["success"] = "Category updated successfully";
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             return View();
         }
@@ -86,7 +86,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
             }
             return View(categoryFromDb);
         }
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, ActionName(nameof(Delete))]
         public IActionResult DeletePOST(int? id)
         {
             Category? obj = _unitOfWork.Category.Get(u => u.Id == id);
@@ -97,7 +97,7 @@ namespace BookStore.WebUI.Areas.Admin.Controllers
             _unitOfWork.Category.Remove(obj);
             _unitOfWork.Save();
             TempData["success"] = "Category deleted successfully";
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }
